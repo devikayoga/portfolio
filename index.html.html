@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Devika – Yoga Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #F5EFE4;
+    --sand2: #EDE5D5;
+    --warm: #C9A87C;
+    --warm2: #A67B50;
+    --bark: #5C3D2E;
+    --bark2: #3B2215;
+    --moss: #7A8C6E;
+    --moss2: #4E5C43;
+    --clay: #C26A4A;
+    --cream: #FAF6F0;
+    --text: #2C1F14;
+    --muted: #7A6A58;
+    --light-border: rgba(92,61,46,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,246,240,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--light-border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--bark);
+  }
+  .nav-links { display: flex; gap: 1.8rem; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.8rem; font-weight: 400;
+    color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--bark); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
+  section + section { border-top: 1px solid var(--light-border); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding-top: 60px;
+    max-width: 860px; margin: 0 auto;
+    gap: 1.2rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--moss); font-weight: 500;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--bark2);
+  }
+  .hero-name em { font-style: italic; color: var(--clay); }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-style: italic; font-weight: 300;
+    color: var(--muted); max-width: 480px;
+  }
+  .hero-pills { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .pill {
+    border: 1px solid var(--warm);
+    color: var(--warm2);
+    border-radius: 999px; padding: 0.3rem 1rem;
+    font-size: 0.78rem; letter-spacing: 0.04em;
+    background: transparent;
+  }
+  .hero-scroll {
+    margin-top: 2rem; font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 0.5rem;
+  }
+  .scroll-line { width: 36px; height: 1px; background: var(--warm); }
+
+  /* DECORATIVE LEAF */
+  .leaf-deco {
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.07; pointer-events: none;
+  }
+  #hero { position: relative; }
+
+  /* HEADINGS */
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--moss); font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 300;
+    color: var(--bark2); line-height: 1.15; margin-bottom: 2rem;
+  }
+  .section-title em { font-style: italic; color: var(--clay); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about-avatar {
+    width: 100%; aspect-ratio: 4/5;
+    background: var(--sand2);
+    border-radius: 120px 120px 40px 40px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: var(--warm2); letter-spacing: -0.02em;
+    font-weight: 300; font-style: italic;
+    border: 1px solid var(--light-border);
+    position: relative; overflow: hidden;
+  }
+  .avatar-ring {
+    position: absolute; inset: 12px;
+    border-radius: 110px 110px 30px 30px;
+    border: 1px solid var(--warm);
+    opacity: 0.4;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.93rem; }
+  .traits { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+  .trait {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-size: 0.85rem; color: var(--bark);
+  }
+  .trait-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--clay); flex-shrink: 0; }
+
+  /* CERTIFICATIONS */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 2rem; padding: 1.8rem 0; border-bottom: 1px solid var(--light-border); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem; font-style: italic; color: var(--warm2);
+    min-width: 80px; padding-top: 0.1rem;
+  }
+  .timeline-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 600; color: var(--bark);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-inst { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--moss); margin-bottom: 0.5rem; }
+  .timeline-desc { font-size: 0.88rem; color: var(--muted); }
+
+  /* TEACHING */
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .exp-card {
+    background: var(--sand);
+    border-radius: 16px; padding: 1.5rem;
+    border: 1px solid var(--light-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .exp-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(92,61,46,0.08); }
+  .exp-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .exp-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--bark); margin-bottom: 0.3rem; }
+  .exp-card p { font-size: 0.85rem; color: var(--muted); }
+
+  /* CLASSES */
+  .classes-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  .class-card {
+    border: 1px solid var(--light-border);
+    border-radius: 16px; padding: 1.5rem 1.2rem;
+    background: white; text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .class-card:hover { border-color: var(--warm); transform: translateY(-2px); }
+  .class-emoji { font-size: 2rem; margin-bottom: 0.8rem; }
+  .class-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--bark); margin-bottom: 0.5rem; }
+  .class-card p { font-size: 0.82rem; color: var(--muted); }
+  .class-tag {
+    display: inline-block; margin-top: 0.8rem;
+    background: var(--sand); border-radius: 999px; padding: 0.2rem 0.75rem;
+    font-size: 0.72rem; color: var(--warm2); letter-spacing: 0.04em;
+  }
+
+  /* GALLERY */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.8rem;
+  }
+  .gallery-cell {
+    border-radius: 12px; overflow: hidden;
+    background: var(--sand2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-style: italic;
+    color: var(--warm2); border: 1px solid var(--light-border);
+    min-height: 140px;
+  }
+  .gallery-cell.tall { grid-row: span 2; min-height: 296px; }
+  .gallery-cell.wide { grid-column: span 2; }
+  .gallery-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-placeholder { text-align: center; padding: 1rem; font-size: 0.8rem; color: var(--muted); }
+  .gallery-placeholder span { display: block; font-size: 1.4rem; margin-bottom: 0.3rem; opacity: 0.5; }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--bark);
+    border-radius: 24px; padding: 3rem;
+    color: var(--sand);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+  .contact-box h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300; line-height: 1.2;
+    color: var(--sand);
+  }
+  .contact-box h2 em { font-style: italic; color: var(--warm); }
+  .contact-box p { font-size: 0.88rem; color: rgba(245,239,228,0.7); margin-top: 0.8rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-size: 0.88rem; color: var(--sand); text-decoration: none;
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(245,239,228,0.2);
+    border-radius: 10px; transition: background 0.2s;
+  }
+  .contact-link:hover { background: rgba(245,239,228,0.08); }
+  .contact-link-icon { font-size: 1rem; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 0.78rem; color: var(--muted);
+    border-top: 1px solid var(--light-border);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero-name    { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-tagline { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-pills   { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-scroll  { animation: fadeUp 0.6s 0.4s ease both; }
+
+  @media (max-width: 600px) {
+    .about-grid, .exp-grid, .classes-grid, .contact-box { grid-template-columns: 1fr; }
+    .gallery-cell.tall { grid-row: span 1; }
+    .gallery-cell.wide { grid-column: span 1; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Devika</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#certs">Certifications</a>
+    <a href="#experience">Experience</a>
+    <a href="#classes">Classes</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <svg class="leaf-deco" width="320" height="520" viewBox="0 0 320 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M160 10 C320 80 340 280 160 510 C-20 280 0 80 160 10Z" fill="#5C3D2E"/>
+    <path d="M160 60 L160 460" stroke="#C9A87C" stroke-width="1.5" stroke-dasharray="4 8"/>
+    <path d="M160 150 C200 130 240 180 220 220" stroke="#C9A87C" stroke-width="1" opacity="0.6"/>
+    <path d="M160 200 C120 185 90 230 110 265" stroke="#C9A87C" stroke-width="1" opacity="0.6"/>
+    <path d="M160 280 C200 260 230 310 215 345" stroke="#C9A87C" stroke-width="1" opacity="0.6"/>
+  </svg>
+
+  <div class="hero-eyebrow">Yoga Instructor & Wellness Guide</div>
+  <h1 class="hero-name">Devika<br><em>moves with you.</em></h1>
+  <p class="hero-tagline">Interactive, fun & deeply engaging yoga — for every body, every pace, every moment.</p>
+  <div class="hero-pills">
+    <span class="pill">Vinyasa Flow</span>
+    <span class="pill">Pranayama</span>
+    <span class="pill">Mindfulness</span>
+    <span class="pill">Beginner-Friendly</span>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I am</div>
+  <h2 class="section-title">About <em>Me</em></h2>
+  <div class="about-grid">
+    <div class="about-avatar">
+      <img src="4.jpeg" alt="Devika Yoga" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+      <div class="avatar-ring"></div>
+    </div>
+    <div class="about-text">
+      <p>Hi, I'm <strong>Devika</strong> — a yoga instructor who believes movement should feel like play, not punishment. My classes are warm, encouraging, and always a little fun.</p>
+      <p>I blend mindful breathwork with dynamic sequencing, creating sessions that leave you energised, centred, and smiling. Whether you're stepping on the mat for the first time or deepening an existing practice, you'll always feel welcome here.</p>
+      <p>Beyond the mat, I'm passionate about holistic wellness — weaving in philosophy, pranayama, and a good dose of laughter into every class.</p>
+      <div class="traits">
+        <div class="trait"><div class="trait-dot"></div> Interactive & student-centred teaching</div>
+        <div class="trait"><div class="trait-dot"></div> Fun, energetic class energy</div>
+        <div class="trait"><div class="trait-dot"></div> Strong focus on breathwork & alignment</div>
+        <div class="trait"><div class="trait-dot"></div> Inclusive for all levels & abilities</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title">Certifications & <em>Education</em></h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-year">2024</div>
+      <div class="timeline-content">
+        <h3>200-Hour Yoga Teacher Training</h3>
+        <div class="timeline-inst">Yoga Alliance Certified · RYT 200</div>
+        <p class="timeline-desc">Comprehensive training covering asana, teaching methodology, anatomy, pranayama, and the philosophical roots of yoga. Graduated with a focus on interactive and accessible teaching techniques.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-content">
+        <h3>Pranayama & Breathwork Intensive</h3>
+        <div class="timeline-inst">Happy yoga</div>
+        <p class="timeline-desc">Deep dive into breathwork science and traditional pranayama techniques — from Nadi Shodhana to Kapalabhati — integrated into modern class settings.</p>
+      </div>
+    </div>
+
+    <!--div class="timeline-item">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-content">
+        <h3>Meditation & Mindfulness Certification</h3>
+        <div class="timeline-inst">Happy Yoga</div>
+        <p class="timeline-desc">Studied guided meditation, body scanning, and mindfulness-based stress reduction (MBSR) techniques applicable to yoga instruction.</p>
+      </div>
+    </div-->
+
+    <div class="timeline-item">
+      <div class="timeline-year">2019</div>
+      <div class="timeline-content">
+        <h3>Art of Living — Foundation Course</h3>
+        <div class="timeline-inst">Happiness & YES Programs</div>
+        <p class="timeline-desc">Enriched understanding of Sudarshan Kriya, meditation, and the harmony of body, mind, and spirit — foundational to my holistic teaching approach.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEACHING EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Where I've taught</div>
+  <h2 class="section-title">Teaching <em>Experience</em></h2>
+  <div class="exp-grid">
+
+    <div class="exp-card">
+      <div class="exp-icon">🌿</div>
+      <h3>Community Studio Classes</h3>
+      <p>Led weekly group sessions across all levels — from sunrise flow to restorative evening wind-downs. Built a loyal, returning student community.</p>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-icon">💻</div>
+      <h3>Online & Virtual Sessions</h3>
+      <p>Designed and taught live-streamed and recorded classes, making yoga accessible to students across time zones and abilities.</p>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-icon">🎓</div>
+      <h3>College & University</h3>
+      <p>Introduced yoga to student communities, combining movement with stress-management techniques especially during exam seasons.</p>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-icon">🏢</div>
+      <h3>Corporate Wellness</h3>
+      <p>Partnered with organisations to bring desk-friendly yoga and mindfulness breaks into workplace wellness programmes.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section id="classes">
+  <div class="section-label">What I offer</div>
+  <h2 class="section-title">Classes & <em>Services</em></h2>
+  <div class="classes-grid">
+
+    <div class="class-card">
+      <div class="class-emoji">🌊</div>
+      <h3>Vinyasa Flow</h3>
+      <p>Dynamic, breath-linked movement that builds strength and fluidity. Expect music, laughter, and a good sweat.</p>
+      <span class="class-tag">All Levels</span>
+    </div>
+
+    <div class="class-card">
+      <div class="class-emoji">🌸</div>
+      <h3>Gentle & Restorative</h3>
+      <p>Slow, nourishing practice with long holds and deep stretches. Perfect for rest days and winding down.</p>
+      <span class="class-tag">Beginners Welcome</span>
+    </div>
+
+    <div class="class-card">
+      <div class="class-emoji">🌬️</div>
+      <h3>Pranayama & Meditation</h3>
+      <p>Dedicated breathwork and guided meditation sessions for mental clarity and emotional balance.</p>
+      <span class="class-tag">All Levels</span>
+    </div>
+
+    <div class="class-card">
+      <div class="class-emoji">👤</div>
+      <h3>Private Sessions</h3>
+      <p>One-on-one coaching tailored entirely to your goals, pace, and body. Fully personalised.</p>
+      <span class="class-tag">By Request</span>
+    </div>
+
+    <div class="class-card">
+      <div class="class-emoji">🏢</div>
+      <h3>Corporate Yoga</h3>
+      <p>In-office or virtual sessions designed around busy schedules — no mat required to start.</p>
+      <span class="class-tag">Group Booking</span>
+    </div>
+
+    <div class="class-card">
+      <div class="class-emoji">✨</div>
+      <h3>Yoga for Beginners</h3>
+      <p>A safe, fun, zero-pressure introduction to yoga fundamentals. The perfect place to start your journey.</p>
+      <span class="class-tag">Beginners Only</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<!-- HOW TO ADD YOUR PHOTOS:
+     Replace each <div class="gallery-placeholder">...</div> block with:
+     <img src="your-image.jpg" alt="description" style="width:100%;height:100%;object-fit:cover;" />
+     
+     You can use local file paths (e.g. src="photos/yoga1.jpg")
+     or online URLs (e.g. src="https://...")
+-->
+<section id="gallery">
+  <div class="section-label">Moments from the mat</div>
+  <h2 class="section-title"><em>Gallery</em></h2>
+  <div class="gallery-grid">
+
+    <div class="gallery-cell tall">
+      <img src="TREE.jpg" alt="Tree pose" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <div class="gallery-cell wide">
+      <img src="3.jpeg" alt="Yoga practice" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <div class="gallery-cell">
+      <img src="back bend.jpg" alt="Back bend pose" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <div class="gallery-cell">
+      <img src="Z UP NAMASTE.jpg" alt="Namaste" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<!-- HOW TO UPDATE CONTACT LINKS:
+     1. Email: change href="mailto:devika@example.com" and the display text
+     2. Instagram: change href="https://instagram.com/yourusername" and @handle text
+     3. LinkedIn: change href="https://linkedin.com/in/yourusername" and display text
+-->
+<section id="contact" style="padding-bottom: 6rem;">
+  <div class="section-label">Let's connect</div>
+  <h2 class="section-title">Get in <em>Touch</em></h2>
+  <div class="contact-box">
+    <div>
+      <h2>Ready to begin your<br><em>practice?</em></h2>
+      <p>Whether you're curious about a class, want to book a private session, or just want to say hello — I'd love to hear from you.</p>
+    </div>
+    <div class="contact-links">
+      <!-- UPDATE EMAIL BELOW -->
+      <a class="contact-link" href="mailto:imsakhi.mailbox@gmail.com">
+        <span class="contact-link-icon">✉</span>
+        imsakhi.mailbox@gmail.com
+      </a>
+      <!-- UPDATE INSTAGRAM BELOW -->
+      <a class="contact-link" href="https://instagram.com/woman_yeahh">
+        <span class="contact-link-icon">📸</span>
+        @woman_yeahh
+      </a>
+      <!-- UPDATE LINKEDIN BELOW -->
+      <a class="contact-link" href="https://www.linkedin.com/in/devika-venkatesh-gandhodi-685217382/">
+        <span class="contact-link-icon">🔗</span>
+        linkedin.com/in/devika
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Devika · Yoga Instructor · Made with intention & warmth 🌿
+</footer>
+
+</body>
+</html>
